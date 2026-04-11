@@ -401,68 +401,87 @@ export default function EventsPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-[30px] bg-gradient-to-br from-[#1e3a8a] via-[#2847a1] to-[#0f766e] p-6 text-white shadow-xl sm:p-8">
-          <div className="max-w-3xl">
-            <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur">
-              Sharek Events
-            </span>
-
-            <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              Explore events in a clean timeline
-            </h1>
-
-            <p className="mt-3 text-sm leading-6 text-white/85 sm:text-base">
-              Focus on the nearest activities first, with filters built from the events that are actually available.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="grid gap-3 lg:grid-cols-6">
-            <input
-              type="text"
-              placeholder="Search by title, category, or keyword"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
-            />
+            <div>
+              <input
+                type="text"
+                placeholder="Search by title, category, or keyword"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              />
+              <p className="mt-1 text-xs text-slate-500">Find events by title, category, or keywords.</p>
+            </div>
 
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
-            >
-              {categoryOptions.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            <select
-              value={selectedWindow}
-              onChange={(e) => setSelectedWindow(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
-            >
-              <option value="Next 7 days">Next 7 days</option>
-              <option value="Next 14 days">Next 14 days</option>
-              <option value="Next 30 days">Next 30 days</option>
-              <option value="All">All Events</option>
-            </select>
-              <option value="upcoming">Upcoming</option>
-              <option value="ongoing">Ongoing</option>
-              <option value="completed">Completed</option>
-              <option value="Joined">Joined</option>
-            </select>
-            <select
-              value={selectedCapacity}
-              onChange={(e) => setSelectedCapacity(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
-            >
-              <option value="All">All Capacities</option>
-              <option value="Available">Available</option>
-              <option value="Full">Full</option>
-            </select>
+            <div>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              >
+                {categoryOptions.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-1 text-xs text-slate-500">Filter events by category (e.g., Workshops, Research).</p>
+            </div>
 
-            <select
-              value={selectedSort}
+            <div>
+              <select
+                value={selectedWindow}
+                onChange={(e) => setSelectedWindow(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              >
+                <option value="Next 7 days">Next 7 days</option>
+                <option value="Next 14 days">Next 14 days</option>
+                <option value="Next 30 days">Next 30 days</option>
+                <option value="All">All Events</option>
+              </select>
+              <p className="mt-1 text-xs text-slate-500">Show events happening within the selected upcoming range.</p>
+            </div>
+
+            <div>
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              >
+                <option value="All">All Statuses</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="completed">Completed</option>
+                <option value="Joined">Joined</option>
+              </select>
+              <p className="mt-1 text-xs text-slate-500">Filter by whether events are upcoming, ongoing, or completed.</p>
+            </div>
+
+            <div>
+              <select
+                value={selectedCapacity}
+                onChange={(e) => setSelectedCapacity(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              >
+                <option value="All">All Capacities</option>
+                <option value="Available">Available</option>
+                <option value="Full">Full</option>
+              </select>
+              <p className="mt-1 text-xs text-slate-500">Show only events with available spots or fully booked events.</p>
+            </div>
+
+            <div>
+              <select
+                value={selectedSort}
+                onChange={(e) => setSelectedSort(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
+              >
+                <option value="date_asc">Date: Soon → Later</option>
+                <option value="date_desc">Date: Later → Soon</option>
+              </select>
+              <p className="mt-1 text-xs text-slate-500">Sort events by date order.</p>
+            </div>
+          </div>
               onChange={(e) => setSelectedSort(e.target.value)}
               className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1e3a8a] focus:ring-2 focus:ring-[#1e3a8a]/10"
             >
